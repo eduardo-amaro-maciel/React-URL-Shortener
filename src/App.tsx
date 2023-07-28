@@ -1,20 +1,10 @@
-import "./styles/global.css";
 import { FaLink } from "react-icons/fa6";
 import { HiOutlineExternalLink } from "react-icons/hi";
+import useShortener from "./hooks/useShortener";
+import clipboard from "./utils/clipboard";
 
 export default function App() {
-   // function fetchData(link: string) {
-   //    fetch("https://api-ssl.bitly.com/v4/shorten", {
-   //       method: "POST",
-   //       headers: {
-   //          Authorization: "Bearer e518510dfa4a9c16ebb1c164322e8183fa2f88fe",
-   //          "Content-Type": "application/json",
-   //       },
-   //       body: JSON.stringify({ long_url: link, domain: "bit.ly" }),
-   //    })
-   //       .then((res) => res.json())
-   //       .then((result) => setOutputValue(result.link));
-   // }
+   const { link, setLink, result, onSubmitLink } = useShortener();
 
    return (
       <div className="relative bg-[#F8F5F2] text-[#232323] m-auto flex flex-col items-center justify-center h-screen bg-layout min-h-screen">
@@ -32,6 +22,8 @@ export default function App() {
                <div className="flex flex-row items-center mb-8 content-center w-full relative">
                   <div className="w-full relative">
                      <input
+                        value={link}
+                        onChange={(e) => setLink(e.target.value)}
                         type="url"
                         placeholder="Enter your URL"
                         className="m-0 text-lg outline-0 w-full h-[50px] pl-[50px] border-solid border-[#232323] border-[3px]"
@@ -39,7 +31,10 @@ export default function App() {
                      />
                      <FaLink className="text-[#F45D48] absolute top-3 left-4 text-2xl" />
                   </div>
-                  <button className="text-[#F8F5F2] w-[150px] h-[50px] border-solid border-[#232323] border-l-0 border-[3px] p-0 bg-[#078080] m-0 text-lg font-bold cursor-pointer px-3 hover:bg-[#026060]">
+                  <button
+                     onClick={onSubmitLink}
+                     className="text-[#F8F5F2] w-[150px] h-[50px] border-solid border-[#232323] border-l-0 border-[3px] p-0 bg-[#078080] m-0 text-lg font-bold cursor-pointer px-3 hover:bg-[#026060]"
+                  >
                      Shorten
                   </button>
                </div>
@@ -48,13 +43,17 @@ export default function App() {
                   <div className="w-full relative">
                      <input
                         type="url"
+                        value={result}
                         className="m-0 text-lg outline-0 w-full h-[50px] pl-[50px] border-solid border-[#232323] border-[3px]"
                         name="output"
                         readOnly
                      />
                      <HiOutlineExternalLink className="text-[#F45D48] absolute top-3 left-4 text-2xl" />
                   </div>
-                  <button className="text-[#F8F5F2] w-[150px] h-[50px] p-0 bg-[#078080] border-l-0 border-solid border-[#232323] border-[3px] m-0 text-lg font-bold cursor-pointer px-3 hover:bg-[#026060]">
+                  <button
+                     onClick={() => clipboard(result)}
+                     className="text-[#F8F5F2] w-[150px] h-[50px] p-0 bg-[#078080] border-l-0 border-solid border-[#232323] border-[3px] m-0 text-lg font-bold cursor-pointer px-3 hover:bg-[#026060]"
+                  >
                      Copy
                   </button>
                </div>
