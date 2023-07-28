@@ -1,0 +1,14 @@
+{
+   "recommendations": [
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint",
+      "streetsidesoftware.code-spell-checker",
+      "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+      "bradlc.vscode-tailwindcss",
+      "formulahendry.auto-rename-tag",
+      "formulahendry.auto-close-tag",
+      "naumovs.color-highlight",
+      "WallabyJs.console-ninja",
+      "EditorConfig.EditorConfig",
+   ],
+}
