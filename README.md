@@ -1,3 +1,3 @@
-# React Shorted Link
+# React URL Shortener
 
 <img src="./public/design.png"/>
